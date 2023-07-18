@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             count_txt.text = "You clicked : " + counter_var + " times"
             if (counter_var == 10) {
                 counter_var = 0
-                Toast.makeText(this, "Hey You reached the Limit", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Hey You reached the Limit!!", Toast.LENGTH_LONG).show()
             }
         }
     }
