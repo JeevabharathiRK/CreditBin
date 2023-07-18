@@ -1,6 +1,6 @@
 # Credit_Bin
 
-<img src="Img/Credit_Bin_logo.jpg" class="img-responsive" alt="App logo">
+<img src="./Img/Credit_Bin_logo.jpg" class="img-responsive" alt="App logo">
 
 <ol>
   <li>
