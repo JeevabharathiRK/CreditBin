@@ -1,6 +1,6 @@
 # Credit_Bin
 
-<img src="https://subtle-baklava-acff49.netlify.app/img/Credit_Bin_logo.png" class="img-responsive" alt="App logo">
+<img src="https://subtle-baklava-acff49.netlify.app/img/Credit_Bin_logo.png" class="img-responsive" alt="App logo" width="300px" height="300px">
 
 <ol>
   <li>
