@@ -1,7 +1,13 @@
 # Credit_Bin
 
-<img src="./Img/Credit_Bin_logo.png" class="img-responsive" alt="App logo">
+<img src="https://subtle-baklava-acff49.netlify.app/img/Credit_Bin_logo.png" class="img-responsive" alt="App logo" width="250px" height="250px">
 
+<h3>Download link :</h3>
+<ul>
+  <li><b>Github Releses : </b><a href="https://github.com/JeevabharathiRK/Credit_Bin/releases/tag/Credit_Bin">Latest Pre_relese (version0.1)</a></li>
+</ul>
+<hr>
+<h3>App Discription ↓:</h3>
 <ol>
   <li>
     The waste management app aims to encourage users to properly dispose of waste and promote
