@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/annie_use_your_telescope</item>
+        <item>@font/arsenal</item>
         <item>@font/audiowide</item>
+        <item>@font/average_sans</item>
+        <item>@font/baloo_bhaijaan</item>
+        <item>@font/benchnine_light</item>
+        <item>@font/jomhuria</item>
+        <item>@font/marvel</item>
     </array>
 </resources>

@@ -1,7 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MyApplication" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.Learn" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--  This hides only status bar      <item name="android:windowFullscreen">true</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    
+    <style name="Theme.App.SpalshScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/BLUE</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/img</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.Learn</item>
+
     </style>
 </resources>
