@@ -31,7 +31,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.zxing.integration.android.IntentIntegrator
+import com.google.android.gms.maps.SupportMapFragment
+import android.net.Uri
+import android.view.View
+import com.google.android.gms.maps.GoogleMap
 
 class MainActivity : AppCompatActivity() {
     private lateinit var wifiManager: WifiManager
@@ -39,11 +44,10 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         setContentView(R.layout.activity_main)
+
         val name_change: TextView = findViewById(R.id.textView7)
         val qr_btn: ImageView = findViewById(R.id.imageView6)
-
 
         show_promt()
 
@@ -61,14 +65,13 @@ class MainActivity : AppCompatActivity() {
             name_change.text = name
         }
 
-        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
         qr_btn.setOnClickListener {
-
             if (wifiManager.isWifiEnabled) {
                 val intentIntegrator = IntentIntegrator(this@MainActivity)
                 intentIntegrator.setBeepEnabled(false)
                 intentIntegrator.setCameraId(0)
-                intentIntegrator.setPrompt("Sacn The Product QR")
+                intentIntegrator.setPrompt("Scan The Product QR")
                 intentIntegrator.setBarcodeImageEnabled(false)
                 intentIntegrator.initiateScan()
             } else {
@@ -76,14 +79,17 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
-    }
 
+        val locationButton: ImageView = findViewById(R.id.imageView7)
+        locationButton.setOnClickListener {
+            openGoogleMaps()
+        }
+    }
 
     fun show_promt() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Connect To CreditBin✨")
         builder.setMessage("Open Wifi And Establish Connection With CreditBin.")
-        //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
         builder.setPositiveButton("USE_WIFI") { dialog, which ->
             val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
@@ -92,25 +98,41 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             if (result.contents == null) {
-                Toast.makeText(this, "cancelled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
             } else {
                 Log.d("MainActivity", "Scanned")
                 Toast.makeText(this, "Scanned -> " + result.contents, Toast.LENGTH_SHORT)
                     .show()
-                val textView:TextView = findViewById(R.id.textView23)
+                val textView: TextView = findViewById(R.id.textView23)
                 textView.text = 0.02.toString()
-
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun openGoogleMaps() {
+        // KIOT LAT AND LON
+        val latitude = 11.5541
+        val longitude = -78.0190
+
+        // Create a URI to construct the Google Maps URL
+        val uri = Uri.parse("geo:$latitude,$longitude")
+
+        // Create an Intent with the ACTION_VIEW action and set the data URI
+        val mapIntent = Intent(Intent.ACTION_VIEW, uri)
+
+        // Set the package to ensure Google Maps is used
+        mapIntent.setPackage("com.google.android.apps.maps")
+
+        // Check if an app can handle the Intent
+        if (mapIntent.resolveActivity(packageManager) != null) {
+            // Start the activity
+            startActivity(mapIntent)
         }
     }
 }

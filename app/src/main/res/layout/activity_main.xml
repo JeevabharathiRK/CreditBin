@@ -197,6 +197,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
                         android:text="Location"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:textAlignment="center"
                         android:textColor="@color/dark_blue"
                         android:textStyle="bold" />
